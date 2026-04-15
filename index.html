@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Atelier Hotels</title>
+    <!---bootrap--->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <!---ICONS-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <!---LEAFLET-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
+
+    <!---JQUERY--->
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js" integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>
+
+    <!--leaflet----->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+
+
+    <!---JQUERY-->
+    <link rel="stylesheet" href="scripts/style.css">
+
+
+    <!-----FONT-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=IBM+Plex+Mono:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <!--NAVBAR-->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top p-4" id="nav">
+        <div class="container-fluid">
+            <!--BRAND-->
+            <a class="navbar-brand emphasis-font" href="nav">
+                ATELIER HOTELS
+                <p class="light-font small">Curated stays. Uncommon luxury</p>
+            </a>
+            <!--CART ICON : SMALL SCREENS CAN ONLY SEE THE CART  (2 OF THE SAME) WHILE BIG SCREEN SEES THE ONE ATTACHED TO NAV-ITEMS-->
+            <button class="btn btn-primary position-relative d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                <i class="bi bi-cart2"></i>
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger d-none cartNum" id="phoneCart"> </span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link emphasis-font" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link emphasis-font" href="#mapHolder">Locations</a>
+                    </li>
+                    <li>
+                        <button class="btn btn-primary position-relative" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                            <i class="bi bi-cart2"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger d-none cartNum">
+                                  </span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="checkout" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable "> <!---MODAL-LG makes the modal bigger--->
+
+            <div class="modal-content card">
+                <!---modal title--->
+                <div class="modal-header border-0" id="modalTileText">
+                    <h1 class="modal-title fs-5 text-center gold" id="staticBackdropLabel" > <i class="bi bi-1-circle-fill mx-2 "></i>Guest Information</h1>
+                </div>
+                <!---modalbody--->
+                <div class="modal-body" id="priceDetails">
+                    <form id="userForm" novalidate>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="input-group mb-3"> <!--FIRST NAME-->
+                                    <span class="input-group-text" > <i class="bi bi-person"></i> </span> <span id="invalidSign"></span>
+                                    <input type="text" class="form-control" id="firstName" placeholder="First name" aria-label="Username"
+                                           aria-describedby="name">
+                                </div>
+                            </div>
+                            <div class="col-md-6 ">
+                                <div class="input-group mb-3"> <!--LAST NAME-->
+                                    <span class="input-group-text" > <i class="bi bi-person"></i> </span>
+                                    <input type="text" class="form-control" id="lastName" placeholder="Last name" aria-label="lastName"
+                                           aria-describedby="lastName">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6 ">
+                                <div class="input-group mb-3"> <!--email-->
+                                    <span class="input-group-text"> <i class="bi bi-envelope"></i></span>
+                                    <input type="email" class="form-control" placeholder="Email" id="emailUser" aria-label="email"
+                                           aria-describedby="email">
+                                </div>
+                            </div>
+                            <div class="col-md-6 ">
+                                <div class="input-group mb-3"> <!--phone number-->
+                                    <span class="input-group-text"> <i class="bi bi-telephone"></i> </span>
+                                    <input type="tel" class="form-control" id="phoneNum" placeholder="Phone Number" aria-label="phoneNum"
+                                           aria-describedby="phoneNum" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6 ">
+                                <div class="input-group mb-3"> <!--address-->
+                                    <span class="input-group-text"> <i class="bi bi-house"></i> </span>
+                                    <input type="text" class="form-control" id="address" placeholder="Address" aria-label="address"
+                                           aria-describedby="address">
+                                </div>
+                            </div>
+                            <div class="col-md-6 ">
+                                <div class="input-group mb-3"> <!--city-->
+                                    <span class="input-group-text"> <i class="bi bi-globe-central-south-asia-fill"></i> </span>
+                                    <input type="text" class="form-control" id="city" placeholder="City" aria-label="city"
+                                           aria-describedby="city">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <div class="input-group mb-3"> <!--province/state-->
+                                    <span class="input-group-text"> <i class="bi bi-map"></i> </span>
+                                    <input type="text" class="form-control" id="province" placeholder="Province/State" aria-label="province"
+                                           aria-describedby="province">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="input-group mb-3"> <!--postal code-->
+                                    <span class="input-group-text"> <i class="bi bi-mailbox"></i> </span>
+                                    <input type="text" class="form-control" id="postalCode" placeholder="Postal Code" aria-label="postalCode"
+                                           aria-describedby="postalCode">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="input-group mb-3"> <!--guests-->
+                                    <span class="input-group-text"> <i class="bi bi-people"></i></span>
+                                    <input type="number" class="form-control" id="guests" placeholder="Guests" aria-label="guests"
+                                           aria-describedby="guest">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="toggleDownCardDetails" class="d-none"> <!---card confirmation--->
+                            <h1 class=" fs-5 text-start gold" > <i class="bi bi-2-circle-fill mx-2 "></i>Card Details</h1>
+                            <div>
+                                <div class="input-group mb-3"> <!--NAME ON CARD-->
+                                    <span class="input-group-text" > <i class="bi bi-person"></i> </span>
+                                    <input type="text" class="form-control" id="nameCard" placeholder="Name on Card" aria-label="nameCard"
+                                           aria-describedby="nameCart">
+                                </div>
+                                <div class="input-group mb-3"> <!--CARD NUM-->
+                                    <span class="input-group-text" > <i class="bi bi-shield-lock"></i></span>
+                                    <input type="text" class="form-control" id="cardNum" placeholder="Card Number" aria-label="cardNum"
+                                           aria-describedby="cardNum">
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <div class="input-group mb-3"> <!--EXPIRATION DATE-->
+                                            <span class="input-group-text"> <i class="bi bi-calendar-date"></i> </span>
+                                            <input type="text" class="form-control" id="expirationDate" placeholder="MM/DD" aria-label="expirationDate"
+                                                   aria-describedby="expirationDate">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="input-group mb-3"> <!--SECURITY CODE-->
+                                            <span class="input-group-text"> <i class="bi bi-shield-check"></i> </span>
+                                            <input type="text" class="form-control" id="securityCode" placeholder="CVV" aria-label="securityCode"
+                                                   aria-describedby="securityCode">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+                <!---modalbody--->
+
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-success checkout_btn">Continue to Summary</button>
+                    <button type="button" class="btn btn-success reserve_btn d-none">Confirm Booking</button>
+                    <button type="button" class="btn btn-secondary" id="close" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div> <!---MODAL-->
+
+    <!---TOAST: shows the user confirmation of booked in cart-->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="roomBookedNotification" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-body regular-font ">
+                <i class="bi bi-check-all"></i>
+                Your Selected Room is now in your cart.
+            </div>
+        </div>
+    </div>
+
+    <!---hero-->
+    <section id="background-hero" >
+        <video id="video" class="object-fit-cover" autoplay loop muted playsinline>
+            <source src="images/video/hero.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </section>
+
+    <section id="exploreLocations" class="text-center p-5 m-5 mapTitle">
+        <h5>Explore our Locations</h5>
+    </section>
+    <!---hero-->
+
+    <!---MAP TITLE AND QUOTE-->
+    <section class="container p-2">
+        <h5 class="text-center display-4 light-font p-2" id="revealText">"Where every detail is considered,
+            and every moment is entirely yours." </h5>
+        <h5 class="light-font text-center">
+            <i class="bi bi-cursor-fill me-2" style="color: var(--gold);"></i>
+            Select a destination to discover your stay
+        </h5>
+    </section>
+
+
+    <!---MAP AND HOTEL CARD-->
+    <section class = "container p-2" >
+        <div class="row align-items-center justify-content-center">
+            <!---MAP AND ZOOM OUT BUTTON-->
+            <div class="col-lg-7 mb-4 mb-lg-0 p-5">
+                <div class="map-title mb-3" id="message">
+                    <button class="light-font p-2" id="zoomOut">
+                        <i class="bi bi-crosshair me-2" style="color: var(--gold);"></i>
+                        Zoom Out
+                    </button>
+                </div>
+                <div id="mapHolder" >
+                    <div id="map" class=""></div>
+                </div>
+            </div>
+            <!---CONTAINER FOR HOTEL CARD-->
+            <div class="col-lg-5 align-items-center justify-conter-center" id="activeHotel"> </div>
+        </div>
+    </section>
+
+    <!-----ROOM CARDS------->
+    <section class="container d-flex flex-column p-2 my-2" id="roomHolder">
+        <!-----FILTER: HIDDEN ON DEFAULT------->
+        <div class="container ms-auto text-end d-none py-4" id="filterLabel">
+            <label for="priceFilter">Filter By Price:</label>
+            <select class="btn btn-secondary" name="prices" id="priceFilter">
+                <option value="lowToHigh">Choose an Option</option>
+                <option value="lowToHigh">Low To High</option>
+                <option value="highToLow">High To Low</option>
+            </select>
+        </div>
+        <div id="roomCards" class="row g-4 align-items-center justify-content-center "></div>
+    </section>
+
+    <!------------OFFCANVAS CART--->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+
+        <div class="offcanvas-header">
+            <h5 id="offcanvasRightLabel" class="emphasis-font">Checkout</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+
+        <div class="offcanvas-body">
+            <h5>Booking Details</h5>
+            <!-----CARD ROOMS WILL RENDER HERE------>
+            <div class="mb-3 " id="cartHistory"> </div>
+            <!-----BUTTON FOR CHECKOUT, MESSAGE------->
+            <div>
+                <div class ="row" id="subTotalCart"> </div>
+                <div class="alert alert-light my-2" role="alert" id="messageOneHotel">
+                    <i class="bi bi-info-circle"></i>
+                    Booking multiple locations? We'll process your checkout one hotel at a time.
+                </div>
+                <div class="g-4 my-2" role="group">
+                    <button id="emptyCart" type="button" class="btn btn-primary">Empty Cart </button>
+                    <button  id="userInfoCheckout" type="button" class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#checkout">
+                        Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer><!--FOOTER-->
+        <div class="footer d-flex justify-content-center align-items-center">
+            <p class = "fw-3 fs-4 py-3 m-0 light-font">Copyright &copy; ATELIER HOTELS</p>
+        </div>
+    </footer><!--FOOTER-->
+
+
+<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+<script src="scripts/validation.js"></script>
+<script src="scripts/project.js"></script>
+
+</body><!--BODY-->
+</html>
