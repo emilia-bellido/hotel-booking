@@ -22,15 +22,24 @@ Atelier Hotels is a responsive, front-end web application for browsing and booki
 * **APIs:** [WeatherAPI](https://www.weatherapi.com/)
 
 ## 📁 Project Structure
+Project Structure
+index.html - Main HTML structure and layout
 
-├── index.html          # Main HTML structure and layout
-├── scripts/
-│   ├── project.js      # Core logic: API calls, map initialization, dynamic rendering, cart management
-│   └── validation.js   # Checkout math, weather promos, and regex form validation
-├── style/
-│   └── style.css       # Custom variables, UI overrides, and animations
-├── public/
-│   ├── hotels.json     # Hotel data (id, coordinates, description)
-│   └── rooms.json      # Room inventory data
-└── images/             # Video background, icons, and static assets
+scripts/
+
+project.js - Core logic: API calls, map initialization, dynamic rendering, cart management
+
+validation.js - Checkout math, weather promos, and regex form validation
+
+style/
+
+style.css - Custom variables, UI overrides, and animations
+
+public/
+
+hotels.json - Hotel data (id, coordinates, description)
+
+rooms.json - Room inventory data
+
+images/ - Video background, icons, and static assets
 
