@@ -2,6 +2,8 @@
 
 Atelier Hotels is a responsive, front-end web application for browsing and booking curated, luxury hotel stays. This project features an interactive map interface, dynamic content rendering, a fully functional shopping cart utilizing local storage, and a multi-step checkout process with regex-based form validation.
 
+##Visit Atelier Hotels: https://emilia-bellido.github.io/hotel-booking/
+
 ## ✨ Features
 
 * **Interactive Map UI:** Utilizes Leaflet.js to plot hotel locations across Canada. Clicking a map marker dynamically fetches and renders specific hotel details, available rooms, and real-time weather.
@@ -22,24 +24,14 @@ Atelier Hotels is a responsive, front-end web application for browsing and booki
 * **APIs:** [WeatherAPI](https://www.weatherapi.com/)
 
 ## 📁 Project Structure
-Project Structure
-index.html - Main HTML structure and layout
 
-scripts/
-
-project.js - Core logic: API calls, map initialization, dynamic rendering, cart management
-
-validation.js - Checkout math, weather promos, and regex form validation
-
-style/
-
-style.css - Custom variables, UI overrides, and animations
-
-public/
-
-hotels.json - Hotel data (id, coordinates, description)
-
-rooms.json - Room inventory data
-
-images/ - Video background, icons, and static assets
-
+* `index.html` - Main HTML layout, navigation, and modal structures
+* `scripts/`
+  * `project.js` - Core logic: API calls, map initialization, dynamic rendering, and cart management
+  * `validation.js` - Checkout math, weather promo logic, and regex form validation
+* `style/`
+  * `style.css` - Custom CSS variables, UI overrides, and animations
+* `public/`
+  * `hotels.json` - Hotel data (ID, coordinates, description, rating)
+  * `rooms.json` - Room inventory data and pricing
+* `images/` - Video background, custom map icons, and static visual assets
