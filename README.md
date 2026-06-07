@@ -21,30 +21,8 @@ Atelier Hotels is a responsive, front-end web application for browsing and booki
   * [Leaflet.js](https://leafletjs.com/) (Interactive mapping)
 * **APIs:** [WeatherAPI](https://www.weatherapi.com/)
 
-## 🚀 Getting Started
-
-Because this project uses the `fetch()` API to load local JSON files, it must be run on a local web server (opening the `index.html` file directly in the browser via `file://` will cause CORS errors).
-
-### Prerequisites
-You will need a local server environment. Some easy options include:
-* **VS Code:** Install the [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) extension.
-* **Node.js:** Run `npx http-server` in the project directory.
-* **Python:** Run `python -m http.server` in the project directory.
-
-### Installation
-1. Clone the repository:
-   \`\`\`bash
-   git clone https://github.com/yourusername/atelier-hotels.git
-   \`\`\`
-2. Navigate to the project directory:
-   \`\`\`bash
-   cd atelier-hotels
-   \`\`\`
-3. Start your local server and open `index.html` in your browser.
-
 ## 📁 Project Structure
 
-\`\`\`text
 ├── index.html          # Main HTML structure and layout
 ├── scripts/
 │   ├── project.js      # Core logic: API calls, map initialization, dynamic rendering, cart management
@@ -55,18 +33,4 @@ You will need a local server environment. Some easy options include:
 │   ├── hotels.json     # Hotel data (id, coordinates, description)
 │   └── rooms.json      # Room inventory data
 └── images/             # Video background, icons, and static assets
-\`\`\`
 
-## 👤 Author
-
-**Emilia Bellido** ```
-
-***
-
-### How to add this to your repo:
-1. In your code editor, create a new file named exactly `README.md` in the root folder of your project (right next to your `index.html`).
-2. Paste the code above into it.
-3. Save it, then use your terminal to commit and push it to GitHub just like you did with your code:
-   * `git add README.md`
-   * `git commit -m "Add project README"`
-   * `git push`
