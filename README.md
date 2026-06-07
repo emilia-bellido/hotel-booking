@@ -2,7 +2,7 @@
 
 Atelier Hotels is a responsive, front-end web application for browsing and booking curated, luxury hotel stays. This project features an interactive map interface, dynamic content rendering, a fully functional shopping cart utilizing local storage, and a multi-step checkout process with regex-based form validation.
 
-##Visit Atelier Hotels: https://emilia-bellido.github.io/hotel-booking/
+## Visit Atelier Hotels: https://emilia-bellido.github.io/hotel-booking/
 
 ## ✨ Features
 
